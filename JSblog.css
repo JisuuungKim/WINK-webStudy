@@ -1,0 +1,24 @@
+body {margin-top: 50px; }
+header {display: inline-block; margin-left: 132px;  margin-right: 172px;}
+#top {width: 86%; height: 17px; background-color: #31383F; margin-bottom: 30px; margin-left: auto; margin-right: auto; }
+nav div {
+    width:230px;
+    height:230px;
+    background-color: #DD8EA4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+nav h1 { font-size: 45px; font-weight: normal; margin-top: 50px;}
+
+nav h2 { font-size: 42px; font-weight: normal; margin-top:0px;}
+
+#JS { display: inline-flex; color:#FFFFFF; font-size: 100px; font-weight: bolder; margin-right: 20px; }
+#BLOG { display: inline-flex; margin:0; color:#FFFFFF; font-size:42px; writing-mode: vertical-lr; text-orientation: upright; font-weight: bold; letter-spacing: 10px; align-items: center}
+
+section {display: inline-block;}
+section article img {display: inline-block; width: 280px; height:280px; margin: 10px;}
+
+#arrow { width: 72px; height: 72px; }
