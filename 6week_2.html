@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form>
+    아이디 : <input type="text" id='ID'/>
+    비밀번호 : <input type="password" id='PW'/>
+    <input type="button" value="로그인" onclick="Click();"/>
+</form>
+</body>
+<script>
+    function Click(){
+        let id = "jisung";
+        let pw = "01038866878";
+
+       if (id != document.getElementById('ID').value && pw != document.getElementById('PW').value) {
+           return alert("아이디와 비밀번호가 맞지 않습니다.")
+       }
+       else if (id != document.getElementById('ID').value && pw == document.getElementById('PW').value) {
+           return alert("아이디가 맞지 않습니다.")
+       }
+       else if (id == document.getElementById('ID').value && pw != document.getElementById('PW').value) {
+           return alert("비밀번호가 맞지 않습니다.")
+       }
+       else {
+           return alert("로그인 성공!")
+       }
+    }
+</script>
+</html>
