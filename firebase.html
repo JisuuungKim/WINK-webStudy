@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>이름</th>
+            <th>제목</th>
+            <th>내용</th>
+        </tr>
+    </thead>
+    <tbody class="content">
+    </tbody>
+</table>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDUi6FOcQbMc3DdPTRC9rkofgff9jZI3hA",
+        authDomain: "test-36208.firebaseapp.com",
+        databaseURL: "https://test-36208-default-rtdb.firebaseio.com",
+        projectId: "test-36208",
+        storageBucket: "test-36208.appspot.com",
+        messagingSenderId: "969474961665",
+        appId: "1:969474961665:web:438f3d734aa5c08fe76b00",
+        measurementId: "G-RG4QQLRM6T"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const database = firebase.database();
+
+    console.log(database);
+
+    function WritePost(name, title, body) {
+        // A post entry.
+        const postData = {
+            name,
+            title,
+            body
+        };
+
+        // Get a key for a new Post.
+        const newPostKey = firebase.database().ref().child('posts').push(postData);
+    }
+
+    let tableContent = document.querySelector(".content");
+
+    function GetPost() {
+        const postRef = firebase.database().ref('/posts/').once('value',function(snapshot) {
+            const data = Object.entries(snapshot.val());
+            // snapshot.val()=데이터들
+            // Object.entries 쓰는 이유 : 데이터들을 array형식으로 변환
+
+            for(let i=0; i<data.length; i++) {
+                const [key,body] = data[i]; //key=data[0] , body=data[1]
+
+                console.log(body);
+
+                tableContent.innerHTML += "<tr><td>" + body.name + "</td><td>" + body.title + "</td><td>" + body.body + "</td></tr>";
+                //데이터테이블 만들기
+            }
+        });
+        return ;
+    }
+
+    //실시간 구현
+    const postRef = firebase.database().ref('/posts/').on('value',function(snapshot) {
+        const data = Object.entries(snapshot.val());
+        // snapshot.val()=데이터들
+        // Object.entries 쓰는 이유 : 데이터들을 array형식으로 변환
+
+        tableContent.innerHTML = "";
+
+        for(let i=0; i<data.length; i++) {
+            const [key,body] = data[i]; //key=data[0] , body=data[1]
+
+            console.log(body);
+
+            tableContent.innerHTML += "<tr><td>" + body.name + "</td><td>" + body.title + "</td><td>" + body.body + "</td></tr>";
+            //데이터테이블 만들기
+        }
+    });
+</script>
+</body>
+</html>
